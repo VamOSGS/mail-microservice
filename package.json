@@ -1,0 +1,19 @@
+{
+  "name": "mail-microservice",
+  "version": "1.0.0",
+  "description": "Mail microservice with micro and docker.",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "micro": "^9.1.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0"
+  }
+}
