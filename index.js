@@ -1,4 +1,18 @@
+const { json } = require('micro');
+const { transporter, mailOptions } = require('./src/mail');
 
-module.exports = () => ({
-  nice: 'json',
-});
+module.exports = async (req) => {
+  const userData = await json(req);
+  const sendData = {
+    from: { name: userData.name, mail: userData.mail },
+    content: { message: userData.message },
+  };
+
+  await transporter.sendMail(mailOptions(sendData.from, sendData.content), async (err, info) => {
+    if (err) console.log(err);
+    else console.log(info);
+  });
+  return {
+    data: 'test',
+  };
+};
