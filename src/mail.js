@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const view = require('./view');
 require('dotenv').config();
 
 const { MAIL, PASS, MY_MAIL } = process.env;
@@ -10,11 +11,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const mailOptions = (from, content) => ({
+const mailOptions = (from, message) => ({
   from: `${from.name} ${MAIL}`,
   to: MY_MAIL,
   subject: 'Contact Form!',
-  html: `<p>Message: ${content.message}</p>`,
+  html: view({ from, message }),
 });
 
 module.exports = { mailOptions, transporter };

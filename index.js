@@ -5,10 +5,10 @@ module.exports = async (req) => {
   const userData = await json(req);
   const sendData = {
     from: { name: userData.name, mail: userData.mail },
-    content: { message: userData.message },
+    message: userData.message,
   };
 
-  await transporter.sendMail(mailOptions(sendData.from, sendData.content), async (err, info) => {
+  await transporter.sendMail(mailOptions(sendData.from, sendData.message), async (err, info) => {
     if (err) console.log(err);
     else console.log(info);
   });
