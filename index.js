@@ -1,18 +1,22 @@
-const { json } = require('micro');
+const { json, send } = require('micro');
 const { transporter, mailOptions } = require('./src/mail');
+require('dotenv').config();
 
-module.exports = async (req) => {
+const { AUTH } = process.env;
+module.exports = async (req, res) => {
+  if (req.headers.authorization !== AUTH) {
+    return {
+      success: false,
+      message: "You don't have access",
+    };
+  }
   const userData = await json(req);
   const sendData = {
     from: { name: userData.name, mail: userData.mail },
     message: userData.message,
   };
-
-  await transporter.sendMail(mailOptions(sendData.from, sendData.message), async (err, info) => {
-    if (err) console.log(err);
-    else console.log(info);
+  transporter.sendMail(mailOptions(sendData.from, sendData.message), (err) => {
+    if (err) send(res, 400, { success: false, message: 'Somthing went wrong' });
+    else send(res, 200, { success: true, message: 'Mail successfully sent' });
   });
-  return {
-    data: 'test',
-  };
 };

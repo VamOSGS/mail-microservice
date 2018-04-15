@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 const mailOptions = (from, message) => ({
   from: `${from.name} ${MAIL}`,
   to: MY_MAIL,
-  subject: 'Contact Form!',
+  subject: 'vamosgs.github.io - Contact Form!',
   html: view({ from, message }),
 });
 
