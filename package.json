@@ -12,6 +12,7 @@
     "dotenv": "^5.0.1",
     "handlebars": "^4.0.11",
     "micro": "^9.1.4",
+    "micro-cors": "^0.1.0",
     "micro-dev": "^2.2.2",
     "nodemailer": "^4.6.4"
   },
