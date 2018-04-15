@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     message: userData.message,
   };
   transporter.sendMail(mailOptions(sendData.from, sendData.message), (err) => {
-    if (err) send(res, 400, { success: false, message: 'Somthing went wrong' });
+    if (err) send(res, 505, { success: false, message: 'Somthing went wrong' });
     else send(res, 200, { success: true, message: 'Mail successfully sent' });
   });
 };
