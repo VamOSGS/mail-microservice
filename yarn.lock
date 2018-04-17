@@ -1903,6 +1903,10 @@ normalize-path@^2.1.1:
   dependencies:
     remove-trailing-separator "^1.0.1"
 
+now-env@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/now-env/-/now-env-3.0.4.tgz#f9ed88884bff8d208ad3eaf39cc3437dd1a591ad"
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"

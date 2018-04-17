@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const view = require('./view');
-require('dotenv').config();
+// eslint-disable-next-line
+if (process.env.NODE_ENV === 'development') require('dotenv').config();
 
 const { MAIL, PASS, MY_MAIL } = process.env;
 const transporter = nodemailer.createTransport({

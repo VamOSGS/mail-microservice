@@ -1,11 +1,12 @@
 const { json, send } = require('micro');
 const { transporter, mailOptions } = require('./src/mail');
 const cors = require('micro-cors')();
-require('dotenv').config();
+// eslint-disable-next-line
+if (process.env.NODE_ENV === 'development') require('dotenv').config();
 
-const { AUTH } = process.env;
+console.log(process.env.NODE_ENV);
 module.exports = cors(async (req, res) => {
-  if (req.headers.authorization !== AUTH) {
+  if (req.headers.authorization !== process.env.AUTH) {
     return {
       success: false,
       message: "You don't have access",
@@ -16,7 +17,7 @@ module.exports = cors(async (req, res) => {
     from: { name: userData.name, mail: userData.mail },
     message: userData.message,
   };
-  transporter.sendMail(mailOptions(sendData.from, sendData.message), (err) => {
+  await transporter.sendMail(mailOptions(sendData.from, sendData.message), (err) => {
     if (err) send(res, 505, { success: false, message: 'Somthing went wrong' });
     else send(res, 200, { success: true, message: 'Mail successfully sent' });
   });
