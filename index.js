@@ -4,7 +4,6 @@ const cors = require('micro-cors')();
 // eslint-disable-next-line
 if (process.env.NODE_ENV === 'development') require('dotenv').config();
 
-console.log(process.env.NODE_ENV);
 module.exports = cors(async (req, res) => {
   if (req.headers.authorization !== process.env.AUTH) {
     return {
