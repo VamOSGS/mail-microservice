@@ -17,7 +17,7 @@ module.exports = cors(async (req, res) => {
     message: userData.message,
   };
   await transporter.sendMail(mailOptions(sendData.from, sendData.message), (err) => {
-    if (err) send(res, 505, { success: false, message: 'Somthing went wrong' });
+    if (err) send(res, 505, { success: false, message: 'Somthing went wrong', err });
     else send(res, 200, { success: true, message: 'Mail successfully sent' });
   });
 });
